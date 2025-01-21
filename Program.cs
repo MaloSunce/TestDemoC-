@@ -12,7 +12,7 @@
         public GenericTree(int numberOfNodes)
         {
             // Throw error if number of nodes is set to a negative number or larger than 100
-            if (numberOfNodes is <= 0 or > 100)
+            if (numberOfNodes is <= 0 or > Constants.MaxNodes)
             {
                 throw new ArgumentException(
                     "The number of nodes must be greater than 0 and less than or equal to 100.");
