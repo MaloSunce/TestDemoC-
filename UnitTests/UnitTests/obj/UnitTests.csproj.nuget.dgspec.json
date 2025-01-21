@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ntnu\\Desktop\\TestDemoC-\\TestDemo.csproj": {}
+    "C:\\Users\\ntnu\\Desktop\\TestDemoC-\\UnitTests\\UnitTests\\UnitTests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ntnu\\Desktop\\TestDemoC-\\TestDemo.csproj": {
+    "C:\\Users\\ntnu\\Desktop\\TestDemoC-\\UnitTests\\UnitTests\\UnitTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ntnu\\Desktop\\TestDemoC-\\TestDemo.csproj",
-        "projectName": "TestDemo",
-        "projectPath": "C:\\Users\\ntnu\\Desktop\\TestDemoC-\\TestDemo.csproj",
+        "projectUniqueName": "C:\\Users\\ntnu\\Desktop\\TestDemoC-\\UnitTests\\UnitTests\\UnitTests.csproj",
+        "projectName": "UnitTests",
+        "projectPath": "C:\\Users\\ntnu\\Desktop\\TestDemoC-\\UnitTests\\UnitTests\\UnitTests.csproj",
         "packagesPath": "C:\\Users\\ntnu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ntnu\\Desktop\\TestDemoC-\\obj\\",
+        "outputPath": "C:\\Users\\ntnu\\Desktop\\TestDemoC-\\UnitTests\\UnitTests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ntnu\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -43,6 +43,28 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.11.1, )"
+            },
+            "NUnit": {
+              "target": "Package",
+              "version": "[4.2.2, )"
+            },
+            "NUnit.Analyzers": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
+            "NUnit3TestAdapter": {
+              "target": "Package",
+              "version": "[4.6.0, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[6.0.2, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
