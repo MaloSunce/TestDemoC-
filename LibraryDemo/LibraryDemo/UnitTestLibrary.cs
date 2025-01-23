@@ -13,7 +13,19 @@ public class Tests
     public void Setup()
     {
         testLibrary = new Library();
-        testUser = new User("testUser", 11);
+        testUser = new User("testUser", 11, [
+            new Book()
+            {
+                BookId = 33,
+                Title = "Fahrenheit 451",
+                Author = "Ray Bradbury",
+                Publisher = "HarperVoyager",
+
+                Available = false,
+                Lender = testUser,
+            }
+        ]);
+        
         availableTestBook = new Book()
         {
             BookId = 11,
@@ -43,7 +55,18 @@ public class Tests
     [Test]
     public void TestAddBook()
     {
-        testLibrary.AddBook(title: "testTitle1", author: "testAuthor1", publisher: null, publicationDate: null);
+        Exception exception = null!;
+        try{
+            testLibrary.AddBook(title: "testTitle1", author: "testAuthor1", publisher: null, publicationDate: null);
+        }
+        catch (Exception ex){
+            exception = ex;
+        }
+
+        if (exception != null)
+        {
+            Assert.Fail();
+        }
         
         Assert.Pass();
     }
@@ -51,13 +74,25 @@ public class Tests
     [Test]
     public void TestNewUser()
     {
-        testLibrary.NewUser("testUser");
+        Exception exception = null!;
+        try{
+            testLibrary.NewUser("testUser");
+        }
+        catch (Exception ex){
+            exception = ex;
+        }
+
+        if (exception != null)
+        {
+            Assert.Fail();
+        }
         
         Assert.Pass();
     }
 
 
     [Test]
+    // Test UpdateBookAvailability() with borrowing a book that is available
     public void TestBorrowAvailableBook()
     {
         var errorMessage = testLibrary.UpdateBookAvailability(
@@ -66,12 +101,17 @@ public class Tests
         if (errorMessage != null)
         {
             Assert.Fail(errorMessage);
+        } 
+        else if (availableTestBook.Available == true) // Check that book availability has been updated correctly
+        {
+            Assert.Fail("availableTestBook.Available == true");
         }
         
         Assert.Pass();
     }
     
     [Test]
+    // Test UpdateBookAvailability with borrowing a book that is unavailable
     public void TestBorrowUnavailableBook()
     {
         var errorMessage = testLibrary.UpdateBookAvailability(
@@ -80,6 +120,26 @@ public class Tests
         if (errorMessage == null)
         {
             Assert.Fail();
+        }
+        
+        Assert.Pass();
+    }
+    
+    
+    [Test]
+    // Test UpdateBookAvailability() with returning a book that was borrowed by testUser
+    public void TestReturnValidBook()
+    {
+        var errorMessage = testLibrary.UpdateBookAvailability(
+            bookId: availableTestBook.BookId, userId: testUser.UserId, borrow: false);
+
+        if (errorMessage == null)
+        {
+            Assert.Fail();
+        }   
+        else if (availableTestBook.Available != true)
+        {
+            Assert.Fail("availableTestBook.Available != true");
         }
         
         Assert.Pass();

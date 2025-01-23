@@ -2,12 +2,12 @@
 
 namespace LibraryDemo.Classes;
 
-public class User(string name, int id)
+public class User(string name, int id, List<Book> borrowedBooks)
 {
     public readonly int UserId = id;
     public string FirstName = name;
 
-    private List<Book> BorrowedBooks = [];
+    private List<Book> BorrowedBooks = borrowedBooks;
 
     public string? AddBorrowedBook(Book book)
     {
