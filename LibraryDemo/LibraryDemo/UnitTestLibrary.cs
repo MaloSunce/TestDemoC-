@@ -19,6 +19,7 @@ public class Tests
         {
             FirstName = "Albert",
             LastName = "Camus",
+            dateOfBirth =  new DateTime(1913, 11, 7),
         };
         testUser = new User("testUser", 11);
         availableTestBook = new Book()
@@ -27,6 +28,8 @@ public class Tests
             Title = "The Stranger",
             Author = testAuthor.FirstName + " " + testAuthor.LastName,
             Publisher = "Vintage",
+            PublicationDate = new DateTime(2020),
+            Language = "English",
             
             Available = true,
             Lender = null,
@@ -47,6 +50,7 @@ public class Tests
             Title = "The Plague",
             Author = testAuthor.FirstName + " " + testAuthor.LastName,
             Publisher = "Penguin Classics",
+            Language = "French",
             
             Available = true,
             Lender = null,
@@ -56,9 +60,8 @@ public class Tests
         testLibrary.AllBooks.Add(availableTestBook);
         testLibrary.AllUsers.Add(testUser);
         testUser.AddBorrowedBook(availableTestBook);
-        testAuthor.Works.Add(unavailableTestBook);
-        testAuthor.Works.Add(availableTestBook);
-        testAuthor.Works.Add(nonBorrowedBook);
+
+        testAuthor.Works = [unavailableTestBook, availableTestBook, nonBorrowedBook];
     }
 
     [Test]
@@ -66,7 +69,7 @@ public class Tests
     {
         Exception exception = null!;
         try{
-            testLibrary.AddBook(title: "testTitle1", author: "testAuthor1", publisher: null, publicationDate: null);
+            testLibrary.AddBook(title: "testTitle1", author: "testAuthor1", publisher: null, publicationDate: null, language: null);
         }
         catch (Exception ex){
             exception = ex;
@@ -182,5 +185,54 @@ public class Tests
         
         Assert.Pass();
     }
+
+    [Test]
+    public void TestGetAuthorDoB()
+    {
+        var dateOfBirth = testAuthor.dateOfBirth;
+        var expected = new DateTime(1913, 11, 7);
+
+        if (dateOfBirth != expected)
+        {
+            Assert.Fail();
+        }
+        Assert.Pass();
+    }
+
+    [Test]
+    public void TestGetAuthorWorks()
+    {
+        var works = testAuthor.Works;
+
+        if (works.Count != 3)
+        {
+            Assert.Fail($"Expected 3 works, got {works.Count}");
+        }
+        
+        Assert.Pass();
+    }
     
+
+    [Test]
+    public void TestGetBookValues()
+    {
+        List<string> values = [];
+        
+        values.Add(availableTestBook.Title);
+        values.Add(availableTestBook.Author!);
+        values.Add(availableTestBook.Publisher!);
+        values.Add(availableTestBook.Language!);
+        values.Add(availableTestBook.PublicationDate.ToString()!);
+        values.Add(unavailableTestBook.Lender!.FirstName);
+
+        // Look for empty strings
+        var emptyItem = values.FirstOrDefault(item => item == "");
+
+        if (emptyItem != null)
+        {
+            Assert.Fail("Found empty string");
+        }
+        
+        Assert.Pass();
+    }
 }

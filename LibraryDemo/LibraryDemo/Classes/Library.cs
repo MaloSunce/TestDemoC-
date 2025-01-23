@@ -5,7 +5,7 @@ public class Library
     public List<User> AllUsers { get; } = [];
     public List<Book> AllBooks { get; } = [];
 
-    public void AddBook(string title, string author, string? publisher, DateTime? publicationDate)
+    public void AddBook(string title, string author, string? publisher, DateTime? publicationDate, string? language)
     {
         try
         {
@@ -25,6 +25,7 @@ public class Library
                 Author = author,
                 Publisher = publisher,
                 PublicationDate = publicationDate,
+                Language = language,
                 Available = true,
                 Lender = null,
             };

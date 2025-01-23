@@ -9,6 +9,8 @@ public class Book
     public string? Publisher { get; set; }
     public DateTime? PublicationDate { get; set; }
     
+    public string? Language { get; set; }
+    
     public required bool Available { get; set; }
 
     public User? Lender { get; set; }
