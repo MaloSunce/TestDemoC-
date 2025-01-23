@@ -371,3 +371,4 @@ C:\Users\ntnu\Desktop\TestDemoC-\LibraryAPI\LibraryAPI.Tests\obj\Debug\net9.0\re
 C:\Users\ntnu\Desktop\TestDemoC-\LibraryAPI\LibraryAPI.Tests\obj\Debug\net9.0\LibraryAPI.Tests.pdb
 C:\Users\ntnu\Desktop\TestDemoC-\LibraryAPI\LibraryAPI.Tests\obj\Debug\net9.0\LibraryAPI.Tests.genruntimeconfig.cache
 C:\Users\ntnu\Desktop\TestDemoC-\LibraryAPI\LibraryAPI.Tests\obj\Debug\net9.0\ref\LibraryAPI.Tests.dll
+C:\Users\ntnu\Desktop\TestDemoC-\LibraryAPI\LibraryAPI.Tests\bin\Debug\net9.0\JetBrains.Annotations.dll

@@ -100,7 +100,12 @@ public class Tests
 
         if (exception != null)
         {
-            Assert.Fail();
+            Assert.Fail(exception.Message);
+        }
+
+        if (testLibrary.AllUsers[^1].FirstName != "testUser")
+        {
+            Assert.Fail("User was not sucessfully added to AllUsers.");
         }
         
         Assert.Pass();
@@ -189,40 +194,5 @@ public class Tests
         
         Assert.Pass();
     }
-
-    [Test]
-    public void TestGetAuthorDoB()
-    {
-        var dateOfBirth = testAuthor.dateOfBirth;
-        var expected = new DateTime(1913, 11, 7);
-
-        if (dateOfBirth != expected)
-        {
-            Assert.Fail();
-        }
-        Assert.Pass();
-    }
-
-    [Test]
-    public void TestGetBookValues()
-    {
-        List<string> values = [];
-        
-        values.Add(availableTestBook.Title);
-        values.Add(availableTestBook.Author!);
-        values.Add(availableTestBook.Publisher!);
-        values.Add(availableTestBook.Language!);
-        values.Add(availableTestBook.PublicationDate.ToString()!);
-        values.Add(unavailableTestBook.Lender!.FirstName);
-
-        // Look for empty strings
-        var emptyItem = values.FirstOrDefault(item => item == "");
-
-        if (emptyItem != null)
-        {
-            Assert.Fail("Found empty string");
-        }
-        
-        Assert.Pass();
-    }
+    
 }

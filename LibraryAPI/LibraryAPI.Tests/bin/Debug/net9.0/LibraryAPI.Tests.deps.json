@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v9.0": {
       "LibraryAPI.Tests/1.0.0": {
         "dependencies": {
+          "JetBrains.Annotations": "2024.3.0",
           "LibraryAPI": "1.0.0",
           "MSTest.TestAdapter": "3.7.2",
           "MSTest.TestFramework": "3.7.2",
@@ -18,6 +19,14 @@
         },
         "runtime": {
           "LibraryAPI.Tests.dll": {}
+        }
+      },
+      "JetBrains.Annotations/2024.3.0": {
+        "runtime": {
+          "lib/netstandard2.0/JetBrains.Annotations.dll": {
+            "assemblyVersion": "4242.42.42.42",
+            "fileVersion": "2024.3.0.0"
+          }
         }
       },
       "Microsoft.ApplicationInsights/2.22.0": {
@@ -617,6 +626,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "JetBrains.Annotations/2024.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ox5pkeLQXjvJdyAB4b2sBYAlqZGLh3PjSnP1bQNVx72ONuTJ9+34/+Rq91Fc0dG29XG9RgZur9+NcP4riihTug==",
+      "path": "jetbrains.annotations/2024.3.0",
+      "hashPath": "jetbrains.annotations.2024.3.0.nupkg.sha512"
     },
     "Microsoft.ApplicationInsights/2.22.0": {
       "type": "package",

@@ -2,6 +2,19 @@
   "version": 3,
   "targets": {
     "net9.0": {
+      "JetBrains.Annotations/2024.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/JetBrains.Annotations.dll": {
+            "related": ".deps.json;.xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/JetBrains.Annotations.dll": {
+            "related": ".deps.json;.xml"
+          }
+        }
+      },
       "Microsoft.ApplicationInsights/2.22.0": {
         "type": "package",
         "dependencies": {
@@ -723,6 +736,29 @@
     }
   },
   "libraries": {
+    "JetBrains.Annotations/2024.3.0": {
+      "sha512": "ox5pkeLQXjvJdyAB4b2sBYAlqZGLh3PjSnP1bQNVx72ONuTJ9+34/+Rq91Fc0dG29XG9RgZur9+NcP4riihTug==",
+      "type": "package",
+      "path": "jetbrains.annotations/2024.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "icon.png",
+        "jetbrains.annotations.2024.3.0.nupkg.sha512",
+        "jetbrains.annotations.nuspec",
+        "lib/net20/JetBrains.Annotations.dll",
+        "lib/net20/JetBrains.Annotations.xml",
+        "lib/netstandard1.0/JetBrains.Annotations.deps.json",
+        "lib/netstandard1.0/JetBrains.Annotations.dll",
+        "lib/netstandard1.0/JetBrains.Annotations.xml",
+        "lib/netstandard2.0/JetBrains.Annotations.deps.json",
+        "lib/netstandard2.0/JetBrains.Annotations.dll",
+        "lib/netstandard2.0/JetBrains.Annotations.xml",
+        "lib/portable40-net40+sl5+win8+wp8+wpa81/JetBrains.Annotations.dll",
+        "lib/portable40-net40+sl5+win8+wp8+wpa81/JetBrains.Annotations.xml",
+        "readme.md"
+      ]
+    },
     "Microsoft.ApplicationInsights/2.22.0": {
       "sha512": "3AOM9bZtku7RQwHyMEY3tQMrHIgjcfRDa6YQpd/QG2LDGvMydSlL9Di+8LLMt7J2RDdfJ7/2jdYv6yHcMJAnNw==",
       "type": "package",
@@ -1869,6 +1905,7 @@
   },
   "projectFileDependencyGroups": {
     "net9.0": [
+      "JetBrains.Annotations >= 2024.3.0",
       "LibraryAPI >= 1.0.0",
       "MSTest.TestAdapter >= 3.7.2",
       "MSTest.TestFramework >= 3.7.2",
@@ -1925,6 +1962,10 @@
       "net9.0": {
         "targetAlias": "net9.0",
         "dependencies": {
+          "JetBrains.Annotations": {
+            "target": "Package",
+            "version": "[2024.3.0, )"
+          },
           "MSTest.TestAdapter": {
             "target": "Package",
             "version": "[3.7.2, )"

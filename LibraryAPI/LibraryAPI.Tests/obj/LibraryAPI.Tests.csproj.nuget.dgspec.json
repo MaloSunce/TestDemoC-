@@ -49,6 +49,10 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "JetBrains.Annotations": {
+              "target": "Package",
+              "version": "[2024.3.0, )"
+            },
             "MSTest.TestAdapter": {
               "target": "Package",
               "version": "[3.7.2, )"

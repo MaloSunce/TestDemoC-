@@ -34,6 +34,17 @@ public class AuthorTest
         
         Assert.Pass();
     }
+    
+    [Test]
+    public void TestGetAuthorDoB()
+    {
+        var dateOfBirth = testAuthor.dateOfBirth;
+        var expected = new DateTime(1913, 11, 7);
 
-
+        if (dateOfBirth != expected)
+        {
+            Assert.Fail();
+        }
+        Assert.Pass();
+    }
 }
