@@ -11,13 +11,13 @@ public class User(string name, int id)
 
     public string? AddBorrowedBook(Book book)
     {
-        // Check if book already exists in the list
+        // Check that the book doesn't already exist in the list 
         if (BorrowedBooks.All(b => b.BookId != book.BookId))
         {
             try
             {
                 // Add book to list if it does not already exist in the collection
-                if (BorrowedBooks.Count >= Consts.MaxBorrowedBooks)
+                if (BorrowedBooks.Count < Consts.MaxBorrowedBooks)
                 {
                     BorrowedBooks.Add(book);
                 }
@@ -42,7 +42,6 @@ public class User(string name, int id)
 
     public string? RemoveBorrowedBook(Book book)
     {
-        Console.WriteLine("In User.RemoveBorrowedBook()");
         // Try to find the book in BorrowedBooks
         if (BorrowedBooks.All(b => b.BookId == book.BookId))
         {
