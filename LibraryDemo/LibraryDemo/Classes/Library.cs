@@ -57,8 +57,15 @@ public class Library
             }
             book.Lender = user;
             book.Available = borrow;
-                
-            user.RemoveBorrowedBook(book);
+
+            if (borrow)
+            {
+                user.AddBorrowedBook(book);
+            }
+            else
+            {
+                user.RemoveBorrowedBook(book);
+            }
                 
             return null;
 
