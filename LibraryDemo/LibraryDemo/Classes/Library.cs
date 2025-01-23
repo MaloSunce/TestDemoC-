@@ -41,7 +41,7 @@ public class Library
     {
     }
 
-    public void UpdateBookAvailability(int bookId, User? user, bool borrow)
+    public string? UpdateBookAvailability(int bookId, User? user, bool borrow)
     {
         try
         {
@@ -51,12 +51,10 @@ public class Library
             {
                 book.Lender = user;
                 book.Available = borrow;
+                
+                return null;
             }
-
-            else
-            {
-                throw new Exception($"Failed to find the book with id {bookId}");
-            }
+            return $"Failed to find book with id {bookId}.";
         }
         catch (Exception e)
         {
@@ -69,11 +67,13 @@ public class Library
     {
         try
         {
-            // Sort all users by UserId
-            var sortedUsers = AllUsers.OrderBy(user => user.UserId).ToList();
-
-            // Get largest Id
-            var lastId = sortedUsers[^1].UserId;
+            // Find a valid userId
+            var lastId = 0;
+            if (AllBooks.Count > 0)
+            {
+                var sortedUsers = AllUsers.OrderBy(user => user.UserId).ToList();
+                lastId =  sortedUsers[^1].UserId;
+            }
 
             // Create new user and push to list
             var newUser = new User(username, lastId + 1);

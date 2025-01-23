@@ -13,10 +13,27 @@ public class Tests
     }
 
     [Test]
-    public void TestAddBookValid()
+    public void TestAddBook()
     {
-        testLibrary.AddBook(title: "...", author: "...", publisher: null, publicationDate: null);
+        testLibrary.AddBook(title: "testTitle1", author: "testAuthor1", publisher: null, publicationDate: null);
         
         Assert.Pass();
     }
+    
+    [Test]
+    public void TestNewUser()
+    {
+        testLibrary.NewUser("testUser");
+        
+        Assert.Pass();
+    }
+
+    /*
+    [Test]
+    public void TestUpdateBookAvailabilityValidId()
+    {
+        
+        testLibrary.UpdateBookAvailability(0, ...)
+        
+    }*/
 }
