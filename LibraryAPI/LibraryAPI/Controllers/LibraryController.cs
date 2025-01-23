@@ -20,12 +20,15 @@ namespace LibraryAPI.Controllers
             return Ok(library.AllBooks);
         }
 
-        // POST api/library/users (example: create a new user)
+        // POST api/library/users 
         [HttpPost("users")]
-        public IActionResult AddUser([FromBody] User newUser)
+        public IActionResult AddUser([FromBody] string username)
         {
-            library.AllUsers.Add(newUser);
-            return CreatedAtAction(nameof(GetAllUsers), new { id = newUser.UserId }, newUser);
+            // Create new user
+            library.NewUser(username);
+
+            // Return username and id of new user
+            return Ok(new { UserId = library.AllUsers[^1].UserId, UserName = library.AllUsers[^1].FirstName });
         }
     }
 }
