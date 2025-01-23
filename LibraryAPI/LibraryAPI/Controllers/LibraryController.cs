@@ -28,7 +28,11 @@ namespace LibraryAPI.Controllers
             library.NewUser(username);
 
             // Return username and id of new user
-            return Ok(new { UserId = library.AllUsers[^1].UserId, UserName = library.AllUsers[^1].FirstName });
+            return Ok(new UserResponse
+            {
+                UserId = library.AllUsers[^1].UserId,
+                UserName = library.AllUsers[^1].FirstName
+            });
         }
         
         // POST api/library/new_book 
@@ -50,5 +54,11 @@ namespace LibraryAPI.Controllers
                 );
             return Ok($"Added {library.AllBooks[^1].Title} to library.");
         }
+    }
+    
+    public class UserResponse
+    {
+        public int UserId { get; set; }
+        public required string UserName { get; set; }
     }
 }

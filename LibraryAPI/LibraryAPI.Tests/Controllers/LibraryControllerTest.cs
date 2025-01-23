@@ -18,6 +18,19 @@ public class LibraryControllerTest
         _mockLibrary = new Library();
         _mockLibrary.AllUsers.Add(new User("testUser1", 1));
         _mockLibrary.AllUsers.Add(new User("testUser2", 2));
+        _mockLibrary.AllBooks.Add(new Book()
+        {      
+            BookId = 1,
+            Title = "testBook1",
+            Available = true
+            
+        });
+        _mockLibrary.AllBooks.Add(new Book()
+        {
+            BookId = 2,
+            Title = "testBook2",
+            Available = false
+        });
 
         _controller = new LibraryController(_mockLibrary);
     }
@@ -42,5 +55,47 @@ public class LibraryControllerTest
 
         Assert.AreEqual("testUser2", users[1].FirstName); 
         Assert.AreEqual(2, users[1].UserId);
+    }
+    
+    [Test]
+    public void TestGetAllBooks()
+    {
+        var result = _controller.GetAllBooks();
+        //Assert.IsInstanceOf<OkObjectResult>(result); 
+        Assert.IsNotNull(result);
+
+        var okResult = result as OkObjectResult;
+        Assert.IsNotNull(okResult);
+
+        var books = okResult.Value as List<Book>;
+        Assert.IsNotNull(books);
+
+        Assert.AreEqual(2, books.Count);
+
+        Assert.AreEqual("testBook1", books[0].Title);
+        Assert.AreEqual(1, books[0].BookId);
+
+        Assert.AreEqual("testBook2", books[1].Title); 
+        Assert.AreEqual(2, books[1].BookId);
+    }
+    
+    [Test]
+    public void TestNewUser()
+    {
+        string username = "testUser";
+        
+        var result = _controller.AddUser(username);
+        Assert.IsNotNull(result);
+
+        var okResult = result as OkObjectResult;
+        Assert.IsNotNull(okResult);
+        
+        var returnedUser = okResult.Value as dynamic;
+        Assert.IsNotNull(returnedUser);
+        Assert.AreEqual(username, returnedUser.UserName);
+        Assert.AreEqual(3, returnedUser.UserId);
+        
+        Assert.AreEqual(3, _mockLibrary.AllUsers.Count);
+        Assert.AreEqual(username, _mockLibrary.AllUsers[^1].FirstName);
     }
 }

@@ -10,15 +10,23 @@ public class AuthorTest
 {
     
     private Author testAuthor;
+    private Book testBook;
 
     [SetUp]
     public void Setup()
     {
+        testBook = new Book()
+        {
+            BookId = 0,
+            Title = "testBook 0",
+            Available = true
+        };
         testAuthor = new Author()
         {
             FirstName = "Albert",
             LastName = "Camus",
             dateOfBirth =  new DateTime(1913, 11, 7),
+            Works = [testBook, testBook, testBook],
         };
     }
     
