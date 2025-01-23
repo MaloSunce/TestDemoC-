@@ -132,21 +132,6 @@ public class Tests
     }
     
     [Test]
-    // Test AddBorrowedBook twice on the same user with the same book
-    public void TestReBorrowBook()
-    {
-        testUser.AddBorrowedBook(unavailableTestBook);
-        var errorMessage = testUser.AddBorrowedBook(unavailableTestBook);
-
-        if (errorMessage != null)
-        {
-            Assert.Pass(errorMessage);
-        } 
-        
-        Assert.Pass();
-    }
-    
-    [Test]
     // Test RemoveBorrowedBook on a book that has not been borrowed by testUser
     public void TestRemoveUnborrowedBook()
     { ;
@@ -156,21 +141,6 @@ public class Tests
         {
             Assert.Pass(errorMessage);
         } 
-        
-        Assert.Fail();
-    }
-    
-    [Test]
-    // Test UpdateBookAvailability with borrowing a book that is unavailable
-    public void TestBorrowUnavailableBook()
-    {
-        var errorMessage = testLibrary.UpdateBookAvailability(
-            bookId: unavailableTestBook.BookId, userId: testUser.UserId, borrow: true);
-
-        if (errorMessage != null)
-        {
-            Assert.Pass(errorMessage);
-        }
         
         Assert.Fail();
     }

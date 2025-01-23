@@ -10,11 +10,12 @@ public class BookTest
 {
     private Book availableTestBook;
     private Book unavailableTestBook;
-    private Book nonBorrowedBook;
+    private User testUser;
 
     [SetUp]
     public void Setup()
     {
+        testUser = new User("testUserName", 0);
         availableTestBook = new Book()
         {
             BookId = 11,
@@ -35,17 +36,7 @@ public class BookTest
             Publisher = "Penguin Classics",
             
             Available = false,
-        };
-        nonBorrowedBook = new Book()
-        {
-            BookId = 44,
-            Title = "The Plague",
-            Author = "Albert Camus",
-            Publisher = "Penguin Classics",
-            Language = "French",
-            
-            Available = true,
-            Lender = null,
+            Lender = testUser
         };
     }
 
