@@ -41,20 +41,27 @@ public class Library
     {
     }
 
-    public string? UpdateBookAvailability(int bookId, User? user, bool borrow)
+    public string? UpdateBookAvailability(int bookId, int userId, bool borrow)
     {
         try
         {
             var book = AllBooks.FirstOrDefault(book => book.BookId == bookId);
+            var user = AllUsers.FirstOrDefault(user => user.UserId == userId);
 
-            if (book != null)
+            if (book == null || user == null)
+                return book == null ? $"Failed to find book with id {bookId}." : $"Failed to user with id {userId}.";
+
+            if (book.Available != borrow)
             {
-                book.Lender = user;
-                book.Available = borrow;
-                
-                return null;
+                return book.Available == false ? $"This book has already been borrowed." : $"This book has not been borrowed.";
             }
-            return $"Failed to find book with id {bookId}.";
+            book.Lender = user;
+            book.Available = borrow;
+                
+            user.RemoveBorrowedBook(book);
+                
+            return null;
+
         }
         catch (Exception e)
         {
