@@ -14,5 +14,6 @@
     &lt;TestId&gt;NUnit3x::B110F922-21E8-4351-BDED-6BFC2DE19367::net9.0::LibraryAPI.Tests.Tests&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::B110F922-21E8-4351-BDED-6BFC2DE19367::net9.0::LibraryAPI.Tests.Classes.BookTest&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::B110F922-21E8-4351-BDED-6BFC2DE19367::net9.0::LibraryAPI.Tests.Classes.UserTest.TestRemoveBorrowedBook&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::B110F922-21E8-4351-BDED-6BFC2DE19367::net9.0::LibraryAPI.Tests.Controllers.LibraryControllerTest&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
