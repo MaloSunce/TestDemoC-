@@ -6,7 +6,7 @@ public class User(string name, int id)
 {
     public readonly int UserId = id;
     public string FirstName = name;
-    
+
     private List<Book> BorrowedBooks = [];
 
     public string? AddBorrowedBook(Book book)
@@ -16,7 +16,15 @@ public class User(string name, int id)
         {
             try
             {
-                BorrowedBooks.Add(book);
+                // Add book to list if it does not already exist in the collection
+                if (BorrowedBooks.Count >= Consts.MaxBorrowedBooks)
+                {
+                    BorrowedBooks.Add(book);
+                }
+                else
+                { 
+                    return $"User {UserId} has already borrowed the maximum number of books!"; 
+                }
             }
             catch (Exception e)
             {
