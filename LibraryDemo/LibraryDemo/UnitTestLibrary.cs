@@ -9,17 +9,23 @@ public class Tests
     private Book availableTestBook;
     private Book unavailableTestBook;
     private Book nonBorrowedBook;
+    private Author testAuthor;
 
     [SetUp]
     public void Setup()
     {
         testLibrary = new Library();
+        testAuthor = new Author()
+        {
+            FirstName = "Albert",
+            LastName = "Camus",
+        };
         testUser = new User("testUser", 11);
         availableTestBook = new Book()
         {
             BookId = 11,
             Title = "The Stranger",
-            Author = "Albert Camus",
+            Author = testAuthor.FirstName + " " + testAuthor.LastName,
             Publisher = "Vintage",
             
             Available = true,
@@ -28,9 +34,9 @@ public class Tests
         unavailableTestBook = new Book()
         {
             BookId = 22,
-            Title = "Metamorphosis",
-            Author = "Franz Kafka",
-            Publisher = "Penguin Books",
+            Title = "The Fall",
+            Author = testAuthor.FirstName + " " + testAuthor.LastName,
+            Publisher = "Penguin Classics",
             
             Available = false,
             Lender = testUser,
@@ -38,9 +44,9 @@ public class Tests
         nonBorrowedBook = new Book()
         {
             BookId = 44,
-            Title = "Kafka On The Shore",
-            Author = "Haruki Murakami",
-            Publisher = "Vintage",
+            Title = "The Plague",
+            Author = testAuthor.FirstName + " " + testAuthor.LastName,
+            Publisher = "Penguin Classics",
             
             Available = true,
             Lender = null,
@@ -50,6 +56,9 @@ public class Tests
         testLibrary.AllBooks.Add(availableTestBook);
         testLibrary.AllUsers.Add(testUser);
         testUser.AddBorrowedBook(availableTestBook);
+        testAuthor.Works.Add(unavailableTestBook);
+        testAuthor.Works.Add(availableTestBook);
+        testAuthor.Works.Add(nonBorrowedBook);
     }
 
     [Test]
@@ -136,7 +145,7 @@ public class Tests
             Assert.Pass(errorMessage);
         } 
         
-        Assert.Pass();
+        Assert.Fail();
     }
     
     [Test]
