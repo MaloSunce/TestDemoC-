@@ -13,19 +13,7 @@ public class Tests
     public void Setup()
     {
         testLibrary = new Library();
-        testUser = new User("testUser", 11, [
-            new Book()
-            {
-                BookId = 33,
-                Title = "Fahrenheit 451",
-                Author = "Ray Bradbury",
-                Publisher = "HarperVoyager",
-
-                Available = false,
-                Lender = testUser,
-            }
-        ]);
-        
+        testUser = new User("testUser", 11);
         availableTestBook = new Book()
         {
             BookId = 11,
@@ -50,6 +38,7 @@ public class Tests
         testLibrary.AllBooks.Add(unavailableTestBook);
         testLibrary.AllBooks.Add(availableTestBook);
         testLibrary.AllUsers.Add(testUser);
+        testUser.AddBorrowedBook(availableTestBook);
     }
 
     [Test]
@@ -131,11 +120,11 @@ public class Tests
     public void TestReturnValidBook()
     {
         var errorMessage = testLibrary.UpdateBookAvailability(
-            bookId: availableTestBook.BookId, userId: testUser.UserId, borrow: false);
+            bookId: unavailableTestBook.BookId, userId: testUser.UserId, borrow: false);
 
-        if (errorMessage == null)
+        if (errorMessage != null)
         {
-            Assert.Fail();
+            Assert.Fail(errorMessage);
         }   
         else if (availableTestBook.Available != true)
         {

@@ -45,21 +45,18 @@ public class Library
     {
         try
         {
-            Console.WriteLine("In UpdateBookAvailability()!!");
             var book = AllBooks.FirstOrDefault(book => book.BookId == bookId);
             var user = AllUsers.FirstOrDefault(user => user.UserId == userId);
-
+            
             if (book == null || user == null)
                 return book == null ? $"Failed to find book with id {bookId}." : $"Failed to user with id {userId}.";
-            
-            if (book.Available != borrow)
-            {
+
+            if (book.Available != borrow) 
                 return book.Available == false ? $"This book has already been borrowed." : $"This book has not been borrowed.";
-            }
             
             book.Lender = user;
             book.Available = !borrow;
-
+            
             if (borrow)
             {
                 user.AddBorrowedBook(book);
@@ -68,8 +65,6 @@ public class Library
             {
                 user.RemoveBorrowedBook(book);
             }
-            
-            Console.WriteLine("After if-else clause...");
                 
             return null;
 
@@ -94,7 +89,7 @@ public class Library
             }
 
             // Create new user and push to list
-            var newUser = new User(username, lastId + 1, []);
+            var newUser = new User(username, lastId + 1);
             AllUsers.Add(newUser);
         }
         catch (Exception e)

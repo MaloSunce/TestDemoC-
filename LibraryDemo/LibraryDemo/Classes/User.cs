@@ -2,12 +2,12 @@
 
 namespace LibraryDemo.Classes;
 
-public class User(string name, int id, List<Book> borrowedBooks)
+public class User(string name, int id)
 {
     public readonly int UserId = id;
     public string FirstName = name;
 
-    private List<Book> BorrowedBooks = borrowedBooks;
+    private List<Book> BorrowedBooks = [];
 
     public string? AddBorrowedBook(Book book)
     {
@@ -42,6 +42,7 @@ public class User(string name, int id, List<Book> borrowedBooks)
 
     public string? RemoveBorrowedBook(Book book)
     {
+        Console.WriteLine("In User.RemoveBorrowedBook()");
         // Try to find the book in BorrowedBooks
         if (BorrowedBooks.All(b => b.BookId == book.BookId))
         {
