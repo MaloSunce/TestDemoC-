@@ -7,6 +7,7 @@ public class Tests
     private Library testLibrary;
     private User testUser;
     private Book availableTestBook;
+    private Book unavailableTestBook;
 
     [SetUp]
     public void Setup()
@@ -23,7 +24,18 @@ public class Tests
             Available = true,
             Lender = null,
         };
+        unavailableTestBook = new Book()
+        {
+            BookId = 22,
+            Title = "Metamorphosis",
+            Author = "Franz Kafka",
+            Publisher = "Penguin Books",
+            
+            Available = false,
+            Lender = testUser,
+        };
         
+        testLibrary.AllBooks.Add(unavailableTestBook);
         testLibrary.AllBooks.Add(availableTestBook);
         testLibrary.AllUsers.Add(testUser);
     }
@@ -54,6 +66,20 @@ public class Tests
         if (errorMessage != null)
         {
             Assert.Fail(errorMessage);
+        }
+        
+        Assert.Pass();
+    }
+    
+    [Test]
+    public void TestBorrowUnavailableBook()
+    {
+        var errorMessage = testLibrary.UpdateBookAvailability(
+            bookId: unavailableTestBook.BookId, userId: testUser.UserId, borrow: true);
+
+        if (errorMessage == null)
+        {
+            Assert.Fail();
         }
         
         Assert.Pass();
