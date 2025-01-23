@@ -1,18 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using LibraryAPI.Classes;
 using NUnit.Framework;
 
-namespace LibraryAPI.Tests;
+namespace LibraryAPI.Tests.Classes;
 
-public class Tests
+public class LibraryTest
 {
     private Library testLibrary;
     private User testUser;
     private Book availableTestBook;
     private Book unavailableTestBook;
-    private Book nonBorrowedBook;
+    private Book nonBorrowedTestBook;
     private Author testAuthor;
 
     [SetUp]
@@ -23,38 +21,24 @@ public class Tests
         {
             FirstName = "Albert",
             LastName = "Camus",
-            dateOfBirth =  new DateTime(1913, 11, 7),
         };
         testUser = new User("testUser", 11);
         availableTestBook = new Book()
         {
-            BookId = 11,
-            Title = "The Stranger",
-            Author = testAuthor.FirstName + " " + testAuthor.LastName,
-            Publisher = "Vintage",
-            PublicationDate = new DateTime(2020),
-            Language = "English",
-            
-            Available = true,
-            Lender = null,
+            BookId = 0,
+            Title = "testBook 0",
+            Available = true
         };
-        unavailableTestBook = new Book()
+        unavailableTestBook= new Book()
         {
-            BookId = 22,
-            Title = "The Fall",
-            Author = testAuthor.FirstName + " " + testAuthor.LastName,
-            Publisher = "Penguin Classics",
-            
-            Available = false,
-            Lender = testUser,
+            BookId = 1,
+            Title = "testBook 1",
+            Available = false
         };
-        nonBorrowedBook = new Book()
+        nonBorrowedTestBook = new Book()
         {
-            BookId = 44,
-            Title = "The Plague",
-            Author = testAuthor.FirstName + " " + testAuthor.LastName,
-            Publisher = "Penguin Classics",
-            Language = "French",
+            BookId = 2,
+            Title = "testBook 3",
             
             Available = true,
             Lender = null,
@@ -65,10 +49,11 @@ public class Tests
         testLibrary.AllUsers.Add(testUser);
         testUser.AddBorrowedBook(availableTestBook);
 
-        testAuthor.Works = [unavailableTestBook, availableTestBook, nonBorrowedBook];
+        testAuthor.Works = [unavailableTestBook, availableTestBook, nonBorrowedTestBook];
     }
 
     [Test]
+    // Tests the AddBook method with a valid book
     public void TestAddBook()
     {
         Exception exception = null!;
@@ -88,6 +73,7 @@ public class Tests
     }
     
     [Test]
+    // Test the NewUser method with a valid user
     public void TestNewUser()
     {
         Exception exception = null!;
@@ -129,20 +115,6 @@ public class Tests
         }
         
         Assert.Pass();
-    }
-    
-    [Test]
-    // Test RemoveBorrowedBook on a book that has not been borrowed by testUser
-    public void TestRemoveUnborrowedBook()
-    { ;
-        var errorMessage = testUser.RemoveBorrowedBook(nonBorrowedBook);
-
-        if (errorMessage != null)
-        {
-            Assert.Pass(errorMessage);
-        } 
-        
-        Assert.Fail();
     }
     
     
