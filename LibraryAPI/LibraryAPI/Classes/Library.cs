@@ -60,7 +60,7 @@ public class Library
             
             if (borrow)
             {
-                user.AddBorrowedBook(book);
+                user.BorrowBook(book);
             }
             else
             {

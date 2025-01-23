@@ -47,7 +47,7 @@ public class LibraryTest
         testLibrary.AllBooks.Add(unavailableTestBook);
         testLibrary.AllBooks.Add(availableTestBook);
         testLibrary.AllUsers.Add(testUser);
-        testUser.AddBorrowedBook(availableTestBook);
+        testUser.BorrowBook(availableTestBook);
 
         testAuthor.Works = [unavailableTestBook, availableTestBook, nonBorrowedTestBook];
     }

@@ -9,7 +9,7 @@ public class User(string name, int id)
 
     private List<Book> BorrowedBooks = [];
 
-    public string? AddBorrowedBook(Book book)
+    public string? BorrowBook(Book book)
     {
         // Check that the book doesn't already exist in the list 
         if (BorrowedBooks.All(b => b.BookId != book.BookId))
@@ -25,6 +25,8 @@ public class User(string name, int id)
                 { 
                     return $"User {UserId} has already borrowed the maximum number of books!"; 
                 }
+
+                return null;
             }
             catch (Exception e)
             {
@@ -36,13 +38,15 @@ public class User(string name, int id)
         {
             return $"The book with id {book.BookId} is already borrowed by user {UserId}.";
         }
-
-        return null;
     }
 
     public string? RemoveBorrowedBook(Book book)
     {
         // Try to find the book in BorrowedBooks
+        if (BorrowedBooks.Count == 0)
+        {
+            return $"User {UserId} has not borrowed any books.";
+        }
         if (BorrowedBooks.All(b => b.BookId == book.BookId))
         {
             try

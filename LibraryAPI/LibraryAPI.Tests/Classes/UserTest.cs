@@ -38,25 +38,25 @@ public class UserTest
     }
 
     [Test]
+    // Test User.AddBorrowedBook twice on the same user with the same book
+    public void TestBorrowAvailableBook()
+    {
+        var errorMessage = testUser.BorrowBook(availableBook);
+
+        if (errorMessage == null)
+        {
+            Assert.Pass();
+        } 
+        
+        Assert.Fail(errorMessage);
+    }
+
+    [Test]
     // Test AddBorrowedBook twice on the same user with the same book
     public void TestReBorrowBook()
     {
-        testUser.AddBorrowedBook(availableBook);
-        var errorMessage = testUser.AddBorrowedBook(availableBook);
-
-        if (errorMessage != null)
-        {
-            Assert.Pass(errorMessage);
-        } 
-        
-        Assert.Pass();
-    }
-    
-    [Test]
-    // Test RemoveBorrowedBook on a book that has not been borrowed by testUser
-    public void TestRemoveUnborrowedBook()
-    { ;
-        var errorMessage = testUser.RemoveBorrowedBook(nonBorrowedBook);
+        testUser.BorrowBook(availableBook);
+        var errorMessage = testUser.BorrowBook(availableBook);
 
         if (errorMessage != null)
         {
@@ -67,9 +67,24 @@ public class UserTest
     }
     
     [Test]
+    // Test RemoveBorrowedBook on a book that has not been borrowed by testUser
+    public void TestRemoveUnborrowedBook()
+    { ;
+        var errorMessage = testUser.RemoveBorrowedBook(nonBorrowedBook);
+
+        if (errorMessage == null)
+        {
+            Assert.Fail();
+        } 
+        
+        Assert.Pass(errorMessage);
+    }
+    
+    [Test]
     // Test RemoveBorrowedBook on a book that has been added to testUser
     public void TestRemoveBorrowedBook()
-    { ;
+    {
+        testUser.BorrowBook(availableBook);
         var errorMessage = testUser.RemoveBorrowedBook(availableBook);
 
         if (errorMessage == null)
