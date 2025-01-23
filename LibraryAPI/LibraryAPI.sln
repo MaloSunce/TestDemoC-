@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryAPI", "LibraryAPI\LibraryAPI.csproj", "{0E5A5075-B443-4BBB-BE61-FE2BA97ED2FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryAPI.Tests", "LibraryAPI.Tests\LibraryAPI.Tests.csproj", "{B110F922-21E8-4351-BDED-6BFC2DE19367}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0E5A5075-B443-4BBB-BE61-FE2BA97ED2FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E5A5075-B443-4BBB-BE61-FE2BA97ED2FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E5A5075-B443-4BBB-BE61-FE2BA97ED2FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E5A5075-B443-4BBB-BE61-FE2BA97ED2FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B110F922-21E8-4351-BDED-6BFC2DE19367}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B110F922-21E8-4351-BDED-6BFC2DE19367}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B110F922-21E8-4351-BDED-6BFC2DE19367}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B110F922-21E8-4351-BDED-6BFC2DE19367}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
