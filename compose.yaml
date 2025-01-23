@@ -1,6 +1,0 @@
-﻿services:
-  testdemo:
-    image: testdemo
-    build:
-      context: .
-      dockerfile: Dockerfile
