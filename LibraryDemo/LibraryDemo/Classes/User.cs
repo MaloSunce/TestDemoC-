@@ -48,6 +48,7 @@ public class User(string name, int id)
             try
             {
                 BorrowedBooks.Remove(book);
+                book.Lender = null;
             }
             catch (Exception e)
             {

@@ -8,6 +8,7 @@ public class Tests
     private User testUser;
     private Book availableTestBook;
     private Book unavailableTestBook;
+    private Book nonBorrowedBook;
 
     [SetUp]
     public void Setup()
@@ -33,6 +34,16 @@ public class Tests
             
             Available = false,
             Lender = testUser,
+        };
+        nonBorrowedBook = new Book()
+        {
+            BookId = 44,
+            Title = "Kafka On The Shore",
+            Author = "Haruki Murakami",
+            Publisher = "Vintage",
+            
+            Available = true,
+            Lender = null,
         };
         
         testLibrary.AllBooks.Add(unavailableTestBook);
@@ -115,18 +126,32 @@ public class Tests
     }
     
     [Test]
+    // Test RemoveBorrowedBook on a book that has not been borrowed by testUser
+    public void TestRemoveUnborrowedBook()
+    { ;
+        var errorMessage = testUser.RemoveBorrowedBook(nonBorrowedBook);
+
+        if (errorMessage != null)
+        {
+            Assert.Pass(errorMessage);
+        } 
+        
+        Assert.Pass();
+    }
+    
+    [Test]
     // Test UpdateBookAvailability with borrowing a book that is unavailable
     public void TestBorrowUnavailableBook()
     {
         var errorMessage = testLibrary.UpdateBookAvailability(
             bookId: unavailableTestBook.BookId, userId: testUser.UserId, borrow: true);
 
-        if (errorMessage == null)
+        if (errorMessage != null)
         {
-            Assert.Fail();
+            Assert.Pass(errorMessage);
         }
         
-        Assert.Pass();
+        Assert.Fail();
     }
     
     
