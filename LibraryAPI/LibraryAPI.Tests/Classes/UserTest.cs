@@ -65,4 +65,18 @@ public class UserTest
         
         Assert.Fail();
     }
+    
+    [Test]
+    // Test RemoveBorrowedBook on a book that has been added to testUser
+    public void TestRemoveBorrowedBook()
+    { ;
+        var errorMessage = testUser.RemoveBorrowedBook(availableBook);
+
+        if (errorMessage == null)
+        {
+            Assert.Pass();
+        } 
+        
+        Assert.Fail(errorMessage);
+    }
 }
