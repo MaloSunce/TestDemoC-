@@ -2,17 +2,21 @@
 
 public class Library
 {
-    public List<User> AllUsers { get; set; } = new List<User>();
-    public List<Book> AllBooks { get; set; } = new List<Book>();
+    public List<User> AllUsers { get; } = [];
+    public List<Book> AllBooks { get; } = [];
 
-    public void AddBook(string title, string author, string publisher, DateTime publicationDate)
+    public void AddBook(string title, string author, string? publisher, DateTime? publicationDate)
     {
         try
         {
             // Find unused bookID
-            var sortedBooks = AllBooks.OrderBy(book => book.BookId).ToList();
-            var lastId = sortedBooks[^1].BookId;
-
+            var lastId = 0;
+            if (AllBooks.Count > 0)
+            {
+                var sortedBooks = AllBooks.OrderBy(book => book.BookId).ToList();
+                lastId =  sortedBooks[^1].BookId;
+            }
+            
             // Create new Book instance and push to AllBooks
             var newBook = new Book()
             {
