@@ -1,7 +1,7 @@
 ﻿namespace LibraryDemo.Classes;
 
-public class User
+public class User(string name, int id)
 {
-    public required int UserId { get; set; }
-    public required string FirstName { get; set; }
+    public int UserId = id;
+    public string FirstName = name;
 }
